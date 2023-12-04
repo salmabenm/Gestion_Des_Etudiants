@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Gestion_Etudiant" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-11MQR6U\SQLEXPRESS;Initial Catalog=Gestion_Etudiant;Integrated Security=True;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="Gestion_Etudiants.Properties.Settings" SettingsPropertyName="Gestion_EtudiantConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.etudiants" Member="etudiants">
+    <Type Name="etudiants">
+      <Column Name="CNE" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Prenom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Sexe" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DateNaissance" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Addresse" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FiliereId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="filieres_etudiants" Member="filieres" ThisKey="FiliereId" OtherKey="filiereId" Type="filieres" IsForeignKey="true" />
+      <Association Name="filieres_etudiants1" Member="filieres1" ThisKey="FiliereId" OtherKey="filiereId" Type="filieres" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.filieres" Member="filieres">
+    <Type Name="filieres">
+      <Column Name="filiereId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nom" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="filieres_etudiants" Member="etudiants" ThisKey="filiereId" OtherKey="FiliereId" Type="etudiants" />
+      <Association Name="filieres_etudiants1" Member="etudiants1" ThisKey="filiereId" OtherKey="FiliereId" Type="etudiants" />
+    </Type>
+  </Table>
+</Database>
