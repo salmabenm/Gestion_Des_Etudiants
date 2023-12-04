@@ -39,7 +39,7 @@ namespace Gestion_Etudiants.View.Etudiant
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::Gestion_Etudiants.Properties.Settings.Default.Gestion_EtudiantConnectionString1, mappingSource)
+				base(global::Gestion_Etudiants.Properties.Settings.Default.Gestion_EtudiantConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}

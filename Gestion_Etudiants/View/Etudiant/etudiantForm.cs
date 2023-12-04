@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -120,7 +121,8 @@ namespace Gestion_Etudiants.View.Etudiant
                             FiliereName = f.Nom
                         };
 
-            st_data = query.ToList();
+            List<Models.Etudiant> etudiants = query.ToList();
+            st_data = etudiants;
 
             return st_data;
         }
@@ -304,9 +306,103 @@ namespace Gestion_Etudiants.View.Etudiant
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+       
+        private void button4_Click(object sender, EventArgs e)
         {
+            AjouterEtudiant formAjout = new AjouterEtudiant();
+            formAjout.Show();
+        }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Models.Etudiant updatedStudent = new Models.Etudiant
+            { 
+                Nom = nom_txt.Text,
+                Prenom = prenom_txt.Text,
+                Sexe = radioButton1.Checked ? "H" : "F",
+                Addresse = adress_txt.Text,
+                Phone = tel_txt.Text,
+            };
+            updateStudentInDB(cne_txt.Text, updatedStudent);
+        }
+        private void updateStudentInDB(string cne ,  Models.Etudiant updatedStudent)
+        {
+            try
+            {
+                string updateQuery = "UPDATE etudiants " +
+                             "SET Nom = @Nom, Prenom = @Prenom, Sexe = @Sexe, " +
+                             " Addresse = @Addresse, " +
+                             "Phone = @Phone " +
+                             "WHERE CNE = @CNE";
+                using (SqlCommand command = new SqlCommand(updateQuery, Data.Connections.connection))
+                {
+                    command.Parameters.AddWithValue("@CNE", cne);
+                    command.Parameters.AddWithValue("@Nom", updatedStudent.Nom);
+                    command.Parameters.AddWithValue("@Prenom", updatedStudent.Prenom);
+                    command.Parameters.AddWithValue("@Sexe", updatedStudent.Sexe);
+                    command.Parameters.AddWithValue("@Addresse", updatedStudent.Addresse);
+                    command.Parameters.AddWithValue("@Phone", updatedStudent.Phone);
+
+                    command.ExecuteNonQuery();
+                }
+                MessageBox.Show("Étudiant mis à jour avec succès dans la base de données");
+                RefreshUI();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la mise à jour de l'étudiant dans la base de données: {ex.Message}");
+            }
+        }
+        private void RefreshUI()
+        {
+            search_student.Items.Clear();
+            students_data = getAllStudentData();
+
+            foreach (var i in students_data)
+            {
+                search_student.Items.Add(i.CNE);
+            }
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // Assuming you have a student CNE to delete
+            string cneToDelete = cne_txt.Text;
+
+            if (!string.IsNullOrEmpty(cneToDelete))
+            {
+                if (MessageBox.Show("Voulez-vous vraiment supprimer cet étudiant?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    deleteStudentFromDB(cneToDelete);
+                    // Optionally, refresh the UI or perform other actions after the delete
+                    RefreshUI(); // Example: Call a method to refresh the UI
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez entrer le CNE de l'étudiant que vous souhaitez supprimer.");
+            }
+        }
+
+        private void deleteStudentFromDB(string cneToDelete)
+        {
+            try
+            {
+                string deleteQuery = "DELETE FROM etudiants WHERE CNE = @CNE";
+
+                using (SqlCommand command = new SqlCommand(deleteQuery, Data.Connections.connection))
+                {
+                    command.Parameters.AddWithValue("@CNE", cneToDelete);
+                    command.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Étudiant supprimé avec succès de la base de données");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la suppression de l'étudiant de la base de données: {ex.Message}");
+            }
         }
     }
 }

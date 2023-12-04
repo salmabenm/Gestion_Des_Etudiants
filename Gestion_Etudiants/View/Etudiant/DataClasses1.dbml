@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Gestion_Etudiant" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-11MQR6U\SQLEXPRESS;Initial Catalog=Gestion_Etudiant;Integrated Security=True;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="Gestion_Etudiants.Properties.Settings" SettingsPropertyName="Gestion_EtudiantConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-GTNIOAL\SQLEXPRESS;Initial Catalog=Gestion_Etudiant;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="Gestion_Etudiants.Properties.Settings" SettingsPropertyName="Gestion_EtudiantConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.etudiants" Member="etudiants">
     <Type Name="etudiants">
       <Column Name="CNE" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

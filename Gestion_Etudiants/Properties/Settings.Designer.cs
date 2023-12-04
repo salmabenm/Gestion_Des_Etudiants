@@ -44,5 +44,16 @@ namespace Gestion_Etudiants.Properties {
                 return ((string)(this["Gestion_EtudiantConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-GTNIOAL\\SQLEXPRESS;Initial Catalog=Gestion_Etudiant;Integrate" +
+            "d Security=True;TrustServerCertificate=True")]
+        public string Gestion_EtudiantConnectionString2 {
+            get {
+                return ((string)(this["Gestion_EtudiantConnectionString2"]));
+            }
+        }
     }
 }
