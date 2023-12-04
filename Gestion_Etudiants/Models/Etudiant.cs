@@ -21,6 +21,22 @@ namespace Gestion_Etudiants.Models
         public string PhotoPath { get; set; }
 
 
+
+
+        public Etudiant( string nom, string prenom, string sexe,
+                        string addresse, string phone)
+        {
+            Nom = nom;
+
+            Prenom = prenom;
+            Sexe = sexe;
+            Addresse= addresse;
+            Phone = phone;
+
+
+        }
+
+
         // Constructor without FiliereName
         public Etudiant(string cne, string nom, string prenom,string email, string sexe, string dateNaissance,
                         string addresse, string phone, int filiere)
