@@ -97,6 +97,8 @@ namespace Gestion_Etudiants.View.Etudiant
 		
 		private string _Prenom;
 		
+		private string _email;
+		
 		private string _Sexe;
 		
 		private System.Nullable<System.DateTime> _DateNaissance;
@@ -121,6 +123,8 @@ namespace Gestion_Etudiants.View.Etudiant
     partial void OnNomChanged();
     partial void OnPrenomChanging(string value);
     partial void OnPrenomChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
     partial void OnSexeChanging(string value);
     partial void OnSexeChanged();
     partial void OnDateNaissanceChanging(System.Nullable<System.DateTime> value);
@@ -196,6 +200,26 @@ namespace Gestion_Etudiants.View.Etudiant
 					this._Prenom = value;
 					this.SendPropertyChanged("Prenom");
 					this.OnPrenomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(100)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
 				}
 			}
 		}

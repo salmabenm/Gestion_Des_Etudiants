@@ -109,16 +109,18 @@ namespace Gestion_Etudiants.View.Etudiant
             var query = from e in data.etudiants
                         join f in data.filieres on e.FiliereId equals f.filiereId
                         select new Models.Etudiant
-                        {
-                            CNE = e.CNE,
-                            Nom = e.Nom,
-                            Prenom = e.Prenom,
-                            Addresse = e.Addresse,
-                            Phone = e.Phone,
-                            Sexe = e.Sexe,
-                            DateNaissance = e.DateNaissance.ToString(),
-                            FiliereName = f.Nom
-                        };
+                        (
+                            e.CNE,
+                            e.Nom,
+                            e.Prenom,
+                            e.email,
+                            e.Addresse,
+                             e.Phone,
+                             e.Sexe,
+                             e.DateNaissance.ToString(),
+                             (int)e.FiliereId,
+                             f.Nom
+                        );
 
             st_data = query.ToList();
 
@@ -262,26 +264,34 @@ namespace Gestion_Etudiants.View.Etudiant
                         string cne = row["CNE"].ToString();
                         string nom = row["Nom"].ToString();
                         string prenom = row["Prenom"].ToString();
+                        string email = row["email"].ToString();
                         string sexe = row["Sexe"].ToString();
                         string dateNaissance = row["DateNaissance"].ToString();
                         string addresse = row["Addresse"].ToString();
                         string phone = row["Phone"].ToString();
                         string filiereNom = row["Filiere"].ToString();
 
+
                         int filiereId = filieres_data.FirstOrDefault(f => f.Nom == filiereNom)?.Id ?? -1;
 
                         if (filiereId != -1)
                         {
 
-                            Models.Etudiant newEtudiant = new Models.Etudiant();
-                            newEtudiant.Nom = nom;
-                            newEtudiant.Addresse = addresse;
-                            newEtudiant.Phone = phone;
-                            newEtudiant.CNE = cne;
-                            newEtudiant.Prenom = prenom;
-                            newEtudiant.DateNaissance = dateNaissance;
-                            newEtudiant.Sexe = sexe;
-                            newEtudiant.FiliereName = filiereNom;
+                            Models.Etudiant newEtudiant = new Models.Etudiant
+                            (
+                                 nom,
+                                addresse,
+                                 phone,
+                               cne,
+                                 prenom,
+                                 email,
+                                 dateNaissance,
+                                 sexe,
+                                 filiereId,
+                                 filiereNom
+                            ); ;
+
+
 
 
                             // TODO :Insert the new Etudiant object into the database

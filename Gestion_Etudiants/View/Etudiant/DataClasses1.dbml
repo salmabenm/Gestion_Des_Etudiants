@@ -5,6 +5,7 @@
       <Column Name="CNE" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Nom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Prenom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Sexe" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="DateNaissance" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Addresse" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
