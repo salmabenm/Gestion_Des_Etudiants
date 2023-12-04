@@ -167,5 +167,10 @@ namespace Gestion_Etudiants.View.Trombinoscope
             fl_data = query.ToList();
             return fl_data;
         }
+
+        private void tromb_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

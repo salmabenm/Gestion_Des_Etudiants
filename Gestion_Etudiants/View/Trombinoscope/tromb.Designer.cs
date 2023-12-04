@@ -47,7 +47,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.combobox1);
             this.Name = "tromb";
-            this.Text = "Form1";
+            this.Text = "Trombinoscope";
+            this.Load += new System.EventHandler(this.tromb_Load);
             this.ResumeLayout(false);
 
         }

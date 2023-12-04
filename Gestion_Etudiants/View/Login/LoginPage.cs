@@ -1,5 +1,6 @@
 ﻿using Gestion_Etudiants.Data;
 using Gestion_Etudiants.View.Administration;
+using Gestion_Etudiants.View.Trombinoscope;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,9 +51,9 @@ namespace Gestion_Etudiants.View.Login
                 }
                 else if (userType.Equals("Enseignant", StringComparison.OrdinalIgnoreCase))
                 {
-                    // TrimonoscopeForm trimonoscopeForm = new TrimonoscopeForm();
+                    tromb t = new tromb();
                     this.Hide();
-                    //  trimonoscopeForm.ShowDialog();
+                    t.ShowDialog();
                 }
                 else
                 {

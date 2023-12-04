@@ -332,8 +332,11 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Images\CNE002.jpg" />
-    <Content Include="Images\CNE007.jpg" />
-    <Content Include="View\CNE007.jpg" />
+    <Content Include="Images\AD33.jpg" />
+    <Content Include="Images\CNE023.jpg" />
+    <Content Include="Images\CNE024.jpg" />
+    <Content Include="Images\CNE038.jpg" />
+    <Content Include="Images\CNE050.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
